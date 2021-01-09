@@ -47,9 +47,7 @@ function run() {
       outMSG("The song could not be found! Please check the song id and try again! (error 404)");
       return;
     }
-    var msg = document.createElement("p");
-    msg.innerHTML = "Something went wrong! Please check your internet connection and try again! Error Code: "+status;
-    output.appendChild(msg);
+    outMSG("Something went wrong! Please check your internet connection and try again! Error Code: "+status);
   });
 }
 
