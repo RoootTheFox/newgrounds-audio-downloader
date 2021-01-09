@@ -43,7 +43,13 @@ function run() {
     output.appendChild(out);
 
   }, function(status) {
-    alert('Something went wrong.');
+    if(status == 404) {
+      outMSG("The song could not be found! Please check the song id and try again! (error 404)");
+      return;
+    }
+    var msg = document.createElement("p");
+    msg.innerHTML = "Something went wrong! Please check your internet connection and try again! Error Code: "+status;
+    output.appendChild(msg);
   });
 }
 
@@ -63,3 +69,12 @@ var getPage = function(url) {
     xhr.send();
   });
 };
+
+
+function outMSG(text) {
+  var output = document.getElementById("run");
+
+  var msg = document.createElement("p");
+  msg.innerHTML = text;
+  output.appendChild(msg);
+}
