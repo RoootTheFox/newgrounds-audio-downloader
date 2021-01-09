@@ -1,0 +1,65 @@
+function run() {
+  var id = document.getElementById("songid").value;
+  var output = document.getElementById("run");
+
+  var text = document.createElement("p");
+
+  if(id == "") {
+    text.innerHTML = "Song ID is empty!";
+    output.appendChild(text);
+    return;
+  }
+
+  text.innerHTML = "Starting download with ID "+id;
+  output.appendChild(text);
+
+
+  // fuck CORS >:3
+  getPage("https://cors-anywhere.herokuapp.com/https://newgrounds.com/audio/listen/" + id).then(function(body) {
+    // work with the data we got
+
+    // scrape the shit out of the site
+    var url = body.substring(body.indexOf("<![CDATA[")+9);
+    url = url.substring(url.indexOf("embedController([")+17);
+    url = url.substring(0, url.indexOf("// ]]>"));
+    url = url.substring(0, url.lastIndexOf("playlist"));
+    url = url.substring(0, url.lastIndexOf(","));
+    url = url.substring(0, url.indexOf("\",\""));
+    url = url.substring(0, url.indexOf("?"));
+    url = url.substring(url.indexOf("url")+3);
+    url = url.substring(url.indexOf(":\"")+2);
+    url = url.replace(/\\\//g, "/");
+
+    var title = body.substring(body.indexOf("<title>")+7);
+    title = title.substring(0, title.lastIndexOf("</title>"))
+
+    var msg = document.createElement("p");
+    msg.innerHTML = "Done!";
+    output.appendChild(msg);
+
+    var out = document.createElement("a");
+    out.href = url;
+    out.innerHTML = "Download \""+title+"\"";
+    output.appendChild(out);
+
+  }, function(status) {
+    alert('Something went wrong.');
+  });
+}
+
+var getPage = function(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'text';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+};

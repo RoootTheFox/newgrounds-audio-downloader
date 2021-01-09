@@ -1,0 +1,16 @@
+.bg {
+    background: #0D1117;
+}
+
+.title {
+  text-align: center;
+  font-family: Roboto;
+  color: #3FB950;
+  font-size: 250%;
+  user-select: none;
+  pointer-events: none;
+}
+
+.text {
+  color: #FFFFFF;
+}
