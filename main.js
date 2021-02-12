@@ -15,8 +15,9 @@ function run() {
 
 
   // fuck CORS >:3
-  getPage("https://thingproxy.freeboard.io/fetch/https://www.newgrounds.com/audio/listen/" + id).then(function(body) {
+  getPage("https://api.allorigins.win/get?url=https%3A%2F%2Fwww.newgrounds.com%2Faudio%2Flisten%2F" + id).then(function(body) {
     // work with the data we got
+    body = body.contents;
 
     // scrape the shit out of the site
     var url = body.substring(body.indexOf("<![CDATA[")+9);
