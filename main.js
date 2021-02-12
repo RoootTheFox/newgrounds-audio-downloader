@@ -15,7 +15,7 @@ function run() {
 
 
   // fuck CORS >:3
-  getPage("https://cors-anywhere.herokuapp.com/https://newgrounds.com/audio/listen/" + id).then(function(body) {
+  getPage("https://thingproxy.freeboard.io/fetch/https://www.newgrounds.com/audio/listen/" + id).then(function(body) {
     // work with the data we got
 
     // scrape the shit out of the site
