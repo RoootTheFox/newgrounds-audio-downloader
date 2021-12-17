@@ -46,6 +46,7 @@ function run() {
 
     var out = document.createElement("a");
     out.href = url;
+    out.rel = "noreferrer";
     out.innerHTML = "Download \""+title+"\"";
     output.appendChild(out);
 
