@@ -31,9 +31,6 @@ function run() {
     // scrape the shit out of the site
     var url = data.substring(data.indexOf("<![CDATA[")+9);
     url = url.substring(url.indexOf("embedController([")+17);
-    url = url.substring(0, url.indexOf("// ]]>"));
-    url = url.substring(0, url.lastIndexOf("playlist"));
-    url = url.substring(0, url.lastIndexOf(","));
     url = url.substring(0, url.indexOf("\",\""));
     url = url.substring(0, url.indexOf("?"));
     url = url.substring(url.indexOf("url")+3);
